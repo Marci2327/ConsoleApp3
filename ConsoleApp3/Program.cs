@@ -166,7 +166,26 @@ namespace Videojatekok
             Console.WriteLine();
             Console.WriteLine();
 
-            
+            // 14. feladat
+            Console.WriteLine("14. feladat");
+            var regiJatekok =
+                from x in jatekok
+                where x.Ev < 2005
+                select new { x.Nev, x.Platform };
+
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            // 15. feladat
+            Console.WriteLine("15. feladat");
+            jatekok
+                .GroupBy(x => x.Platform)
+                .Select(x => x.OrderByDescending(y => y.Ertekeles).FirstOrDefault())
+                .ToList()
+                .ForEach(x => Console.WriteLine($"{x.Nev} - {x.Ertekeles}"));
+                
 
             Console.ReadKey();
         }
